@@ -19,7 +19,7 @@
                 <td>{{book.category}}</td>
                 <td>{{book.qty}}</td>
                 <td><button (click)="setSelectBook(book)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button></td>
-                <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-whatever="@getbootstrap"><i class="bi bi-pencil-square"></i></button></td>
+                <td><button (click)="setSelectBook(book)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-whatever="@getbootstrap"><i class="bi bi-pencil-square"></i></button></td>
             </tr>
         </tbody>
     </table>
@@ -43,30 +43,64 @@
       </div>
     </div>
   </div>
+  <!-- model Update conformation -->
+<div class="modal fade" id="updateconformationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Conformation Update</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      If you want to update "{{selectedBook?.title}}" this book
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveBook()">Conform Update</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- model Update -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form>
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="recipient-name" class="col-form-label">ID:</label>
+            <input type="text" value={{selectedBook?.id}} disabled class="form-control" id="recipient-name">
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="recipient-name" class="col-form-label">ISBN:</label>
+            <input type="text" value={{selectedBook?.isbn}} disabled class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Title:</label>
+            <input type="text" [(ngModel)]="selectedBook && selectedBook.title" [ngModelOptions]="{standalone: true}" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Author:</label>
+            <input type="text" [(ngModel)]="selectedBook && selectedBook.author" [ngModelOptions]="{standalone: true}"  class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Category:</label>
+            <input type="text" [(ngModel)]="selectedBook && selectedBook.category" [ngModelOptions]="{standalone: true}"  class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Qty:</label>
+            <input type="number" [(ngModel)]="selectedBook && selectedBook.qty" [ngModelOptions]="{standalone: true}"  class="form-control" id="recipient-name">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#updateconformationModal">Update</button>
       </div>
     </div>
   </div>
