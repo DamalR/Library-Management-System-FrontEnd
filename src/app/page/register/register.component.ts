@@ -13,6 +13,7 @@ import { CommonModule} from "@angular/common";
 export class RegisterComponent implements OnInit{
   private http;
   public countryList:any;
+  public selectedCountry:any;
 
   constructor(private httpClient:HttpClient){
     this.http=httpClient;
@@ -24,8 +25,13 @@ export class RegisterComponent implements OnInit{
   loadCountries() {
     let api = "https://restcountries.com/v3.1/all";
     this.http.get(api).subscribe(res =>{
+      this.countryList = res;
       console.log(res);
     });
+  }
+  setSelectedCountry(country:any){
+    this.selectedCountry=country;
+    console.log(this.selectedCountry);
   }
 
 }

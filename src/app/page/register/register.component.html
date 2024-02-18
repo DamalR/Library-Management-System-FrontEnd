@@ -63,9 +63,9 @@
 
             <div class="col-md-5">
               <label for="country" class="form-label">Country</label>
-              <select class="form-select" id="country" required>
+              <select class="form-select" id="country" required *ngIf ="countryList">
                 <option value="">Choose...</option>
-                <option>United States</option>
+                <option *ngFor="let country of countryList"[value]="country.name.common"(click)="setSelectedCountry(country)">{{country.flag}}&nbsp;{{country.name.common}}</option>
               </select>
               <div class="invalid-feedback">
                 Please select a valid country.
@@ -74,7 +74,7 @@
 
             <div class="col-md-3">
               <label for="zip" class="form-label">Phone number</label>
-              <input type="text" class="form-control" id="zip" placeholder="" required>
+              <input type="text" class="form-control" [(ngModel)]="selectedCountry?.idd.root" [ngModelOptions]="{standalone:true}" id="zip" placeholder="" required>
               <div class="invalid-feedback">
                 Zip code required.
               </div>
