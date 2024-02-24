@@ -31,14 +31,14 @@ export class ViewAllBorrowersComponent implements OnInit{
     });
   }
 
-  deleteBook() {
+  deleteBorrower() {
     let api = "http://localhost:8080/borrower/" + this.selectedBorrower.id;
     this.http.delete(api, { responseType: "text" }).subscribe((responce: string) => {
       console.log(responce);
       this.loadBorrowers();
       Swal.fire({
         title: "Deleted!",
-        text: `${this.selectedBorrower.title} book is Deleted.`,
+        text: `${this.selectedBorrower.name} borrower is Deleted.`,
         icon: "success"
       });
       this.selectedBorrower = null;
