@@ -1,1 +1,24 @@
-<p>view-all-borrowers works!</p>
+<div class="table-responsive small container">
+    <table class="table table-sm" *ngIf="borrowerList">
+        <thead>
+            <tr>
+                <th scope="col">BorrowerId</th>
+                <th scope="col">Name</th>
+                <th scope="col">NIC</th>
+                <th scope="col">Address</th>
+                <th scope="col">Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let borrower of borrowerList;">
+                <td>#BN{{borrower.borrowerId}}</td>
+                <td>{{borrower.name}}</td>
+                <td>{{borrower.nic}}</td>
+                <td>{{borrower.address}}</td>
+                <td>{{borrower.contact}}</td>
+                <td><button (click)="setSelectBorrower(borrower)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button></td>
+                <td><button (click)="setSelectBorrower(borrower)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-whatever="@getbootstrap"><i class="bi bi-pencil-square"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

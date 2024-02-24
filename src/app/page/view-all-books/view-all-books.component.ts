@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   templateUrl: './view-all-books.component.html'
 })
 export class ViewAllBooksComponent implements OnInit {
-  private http;
+  private http;;
   bookList: any = [];
   selectedBook: any;
 
