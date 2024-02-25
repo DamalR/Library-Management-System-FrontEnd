@@ -25,14 +25,15 @@ export class ViewAllBorrowersComponent implements OnInit{
   }
 
   loadBorrowers() {
-    this.http.get('http://localhost:8080/borrower/get').subscribe((data: any) => {
+    this.http.get('http://localhost:8090/borrower/get').subscribe((data: any) => {
       this.borrowerList = data;
       console.log(this.borrowerList);
     });
   }
 
   deleteBorrower() {
-    let api = "http://localhost:8080/borrower/" + this.selectedBorrower.id;
+    console.log("calling deleteBorrower");
+    let api = "http://localhost:8090/borrower/" + this.selectedBorrower.borrowerId;
     this.http.delete(api, { responseType: "text" }).subscribe((responce: string) => {
       console.log(responce);
       this.loadBorrowers();
@@ -46,12 +47,14 @@ export class ViewAllBorrowersComponent implements OnInit{
   }
 
   setSelectBorrower(borrower: any) {
+    console.log("setSelected calling.....");
     this.selectedBorrower = borrower;
-    console.log("setSelectedBorrower" + borrower.id);
+    console.log("selectedBorrower" + borrower.borrowerId);
+    console.log("setSelected calling end.....");
   }
 
-  saveBook(){
-    let postApi = "http://localhost:8080/borrower/add";
+  saveBorrower(){
+    let postApi = "http://localhost:8090/borrower/add";
     this.http.post(postApi,this.selectedBorrower).subscribe(data=>{
       Swal.fire({
         title: "Update!",
