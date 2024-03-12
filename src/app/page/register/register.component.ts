@@ -14,6 +14,16 @@ export class RegisterComponent implements OnInit{
   private http;
   public countryList:any;
   public selectedCountry:any;
+  public userObj={
+    firstName : null,
+    lastName : null,
+    userName : null,
+    email : null,
+    address1 : null,
+    address2 : null,
+    country : null,
+    phoneNumber : null
+  }
 
   constructor(private httpClient:HttpClient){
     this.http=httpClient;
